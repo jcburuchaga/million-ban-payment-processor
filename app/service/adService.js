@@ -13,9 +13,23 @@ getPendingAds = () =>{
         }); 
     });
 }
+
+updateAccount = (id) =>{
+    return new Promise((resolve, reject) => {
+        Advertisement.findAll({enabled:'1'},{where: {            
+            idx : id
+          }})
+        .then((data) => { 
+            resolve(data);
+        }).catch(error => { 
+            reject(error);
+        }); 
+    });
+}
  
 
 
 module.exports = {
-    getPendingAds:getPendingAds
+    getPendingAds:getPendingAds,
+    updateAccount:updateAccount
 }
