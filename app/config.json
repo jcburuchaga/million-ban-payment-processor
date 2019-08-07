@@ -1,0 +1,20 @@
+{ 
+    "db": {
+      "host": "localhost",
+      "port": 5432,
+      "user": "payments",
+      "pwd": "payments",
+      "name": "million_ban",
+      "dialect": "postgres",
+      "sql_out_log": false,
+      "pool": {
+        "min": 1,
+        "max": 5
+      }
+    },
+    "urls": {
+      "main_ads_url" : "http://localhost:5000/main_ads.png"
+    }
+    ,
+    "apiKey": "okujenifuef78736et3g8ybuh3ede"
+  }
