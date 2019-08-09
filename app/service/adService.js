@@ -14,9 +14,9 @@ getPendingAds = () =>{
     });
 }
 
-updateAccount = (id) =>{
+updateAccount = (id, account ) =>{
     return new Promise((resolve, reject) => {
-        Advertisement.findAll({enabled:'1'},{where: {            
+        Advertisement.update({enabled:'1', owner: account},{where: {            
             idx : id
           }})
         .then((data) => { 
