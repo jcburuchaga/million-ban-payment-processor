@@ -50,16 +50,15 @@ var j = schedule.scheduleJob('*/5 * * * * *', async () => {
       });
    }
    ads.forEach( async (ad) => { 
-      let a = await bananojs.getPendingBlocksForAccount(ad.generated_address,4,0,false); 
+      let a = await bananojs.getAccountHistory(ad.generated_address); 
       let ban_to_deposit = ad.width * ad.height;
       let ban_total = 0;
       let from_account = '';
       if(a.length > 0)
       {
-         a.forEach( async (hash) => {
-           let b = await bananojs.getBlock(hash);
-           from_account = b.block_account; 
-           ban_total =  parseInt(await bananojs.rawToBan(b.amount)) + ban_total; 
+         a.forEach( async (history) => { 
+           from_account = history.account; 
+           ban_total =  parseInt(await bananojs.rawToBan(history.amount)) + ban_total; 
            if (ban_total >= ban_to_deposit) { 
             const x1 = Math.floor(ad.x/10);
             const y1 = Math.floor(ad.y/10);
@@ -71,8 +70,9 @@ var j = schedule.scheduleJob('*/5 * * * * *', async () => {
             }
             else
             {
-               await service.updateAccount("return funds "+ad.idx,from_account,'0' );
+               await service.updateAccount("return funds to:"+ad.idx,from_account,'0' );
             }
+             
            } 
          });
       }
