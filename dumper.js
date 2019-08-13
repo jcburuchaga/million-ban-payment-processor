@@ -10,7 +10,7 @@ var j = schedule.scheduleJob('*/30 * * * * *', async () => {
       let a = await bananojs.getAccountBalance(b.generated_address); 
       if(a > 0 )
       {   
-         await bananojs.send(b.wallet,b.generated_address,address,a,0); 
+         await bananojs.send(b.wallet,b.generated_address,address,a,b.idx); 
       } 
    }); 
 });
